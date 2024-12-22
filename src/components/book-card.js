@@ -7,6 +7,7 @@ import {
   CardBody,
   CardHeader,
 } from "@material-tailwind/react";
+import Link from "next/link";
 
 const IMAGE_TYPE = {
   ARTICLE:
@@ -16,17 +17,19 @@ const IMAGE_TYPE = {
   BOOK: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
 
-export function BookCard({ type, title, desc }) {
+export function BookCard({ type, title, desc, url }) {
   return (
     <Card color="transparent" shadow={false}>
       <CardHeader color="gray" floated={false} className="mx-0 mt-0 mb-6">
-        <Image
-          width={768}
-          height={768}
-          src={IMAGE_TYPE[type] || IMAGE_TYPE.BOOK}
-          alt={title}
-          className="h-full w-full scale-[1.1] object-cover object-center"
-        />
+        <Link href={url || "#"} target="_blank">
+          <Image
+            width={768}
+            height={768}
+            src={IMAGE_TYPE[type] || IMAGE_TYPE.BOOK}
+            alt={title}
+            className="h-full w-full scale-[1.1] object-cover object-center"
+          />
+        </Link>
       </CardHeader>
       <CardBody className="p-0">
         <Typography color="blue" className="mb-2 text-xs !font-semibold">

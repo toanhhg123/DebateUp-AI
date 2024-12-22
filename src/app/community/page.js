@@ -2,6 +2,7 @@
 
 import apiClient from "@/config/axios";
 import { useAuth } from "@/provider/auth";
+import { Button, Spinner } from "@material-tailwind/react";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -19,12 +20,12 @@ const Page = () => {
     },
   ]);
 
-  const { mutate } = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: (content) => {
       return apiClient.post("/practice/debate", { content });
     },
     onSuccess: (data) => {
-      console.log(data);
+      setChats([...chats, { name: "DebateUp AI", message: data.data }]);
     },
     onError: (e) => toast.error(e.message),
   });
@@ -82,6 +83,7 @@ const Page = () => {
               </div>
             )
           )}
+          <div className="p-4">{status === "pending" && <Spinner />}</div>
         </div>
         <div className=" px-4 py-2">
           <form className="flex items-center" onSubmit={handleSubmit}>
@@ -91,12 +93,14 @@ const Page = () => {
               placeholder="Type your message..."
               name="message"
             />
-            <button
+            <Button
+              disabled={status === "pending"}
               type="submit"
+              size="lg"
               className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full"
             >
               Gửi
-            </button>
+            </Button>
           </form>
         </div>
       </div>

@@ -145,12 +145,13 @@ const ResourcePage = () => {
         </div>
       </div>
       <div className="container mx-auto grid grid-cols-1 items-start gap-x-6 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
-        {resources.map((props, key) => (
+        {resources.map((props) => (
           <BookCard
             key={props.id}
             type={props.type}
             desc={props.description}
             title={props.title}
+            url={props.url}
           />
         ))}
       </div>
