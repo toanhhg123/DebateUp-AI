@@ -10,12 +10,12 @@ import {
 } from "@material-tailwind/react";
 import {
   RectangleStackIcon,
-  UserCircleIcon,
   XMarkIcon,
   Bars3Icon,
   HomeIcon,
   PresentationChartBarIcon,
   PencilSquareIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useAuth } from "@/provider/auth";
@@ -42,9 +42,9 @@ const NAV_MENU = [
     href: "/evaluate",
   },
   {
-    name: "Tài Khoản",
-    icon: UserCircleIcon,
-    href: "/account",
+    name: "Diễn đàn",
+    icon: UserGroupIcon,
+    href: "/forum",
   },
 ];
 

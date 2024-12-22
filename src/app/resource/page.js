@@ -2,70 +2,16 @@
 
 import { BookCard } from "@/components";
 import apiClient from "@/config/axios";
+import { useAuth } from "@/provider/auth";
 import { Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
-
-const BOOKS = [
-  {
-    img: "/image/books/RectangleBig1.svg",
-    category: "Natasha Wing",
-    title: "The Night Before Kindergarten",
-    desc: "A heartwarming and humorous picture book that eases the jitters of starting kindergarten.",
-    price: "$99",
-    offPrice: "$79",
-  },
-  {
-    img: "/image/books/RectangleBig6.svg",
-    category: "James Patterson",
-    title: "Middle School: The Worst Years of My Life",
-    desc: "A funny and relatable novel about the challenges of navigating middle school.",
-    price: "$99",
-    offPrice: "$79",
-  },
-  {
-    img: "/image/books/RectangleBig2.svg",
-    category: "Helen W. Colby",
-    title: "College Student: A Comprehensive Checklist",
-    desc: "A practical guidebook that helps college students prepare for the transition to university.",
-    price: "$99",
-    offPrice: "$79",
-  },
-  {
-    img: "/image/books/RectangleBig3.svg",
-    category: "Walter Pauk",
-    title: "How to Study in College",
-    desc: "A valuable resource for high school seniors and college freshmen, offering effective study strategies.",
-    price: "$99",
-    offPrice: "$79",
-  },
-  {
-    img: "/image/books/RectangleBig4.svg",
-    category: "William Strunk Jr.",
-    title: "The Elements of Style",
-    desc: "A classic reference book on grammar and writing skills, essential for high school and college students.",
-    price: "$99",
-    offPrice: "$79",
-  },
-  {
-    img: "/image/books/RectangleBig5.svg",
-    category: "William Strunk Jr.",
-    title: "The Elements of Style",
-    desc: "A classic reference book on grammar and writing skills, essential for high school and college students.",
-    price: "$99",
-    offPrice: "$79",
-  },
-];
-
-const BOOKS_TABS = [
-  "history",
-  "law",
-  "math",
-  "economy",
-  "business",
-  "communication",
-];
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const ResourcePage = () => {
+  const { isLogin } = useAuth();
+  const router = useRouter();
+
   const { data: categoryData } = useQuery({
     queryKey: ["categories"],
     queryFn: () => {
@@ -83,18 +29,15 @@ const ResourcePage = () => {
   const categories = categoryData?.data || [];
   const resources = resourceData?.data || [];
 
-  console.log({ categories, resources });
+  useEffect(() => {
+    if (isLogin === false) {
+      router.push("/login");
+    }
+  }, [isLogin, router]);
 
   return (
     <section className="container mx-auto pt-20">
       <div className=" mx-auto mb-20 text-center">
-        <Typography
-          variant="paragraph"
-          color="blue-gray"
-          className="mb-3 font-bold uppercase"
-        >
-          up to 40% OFF
-        </Typography>
         <Typography variant="h1" color="blue-gray" className="mb-2">
           Danh sách tài nguyên
         </Typography>

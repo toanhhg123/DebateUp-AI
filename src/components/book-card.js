@@ -23,11 +23,11 @@ export function BookCard({ type, title, desc, url }) {
       <CardHeader color="gray" floated={false} className="mx-0 mt-0 mb-6">
         <Link href={url || "#"} target="_blank">
           <Image
-            width={768}
-            height={768}
+            width={800}
+            height={500}
             src={IMAGE_TYPE[type] || IMAGE_TYPE.BOOK}
             alt={title}
-            className="h-full w-full scale-[1.1] object-cover object-center"
+            className="scale-[1.1]  object-center w-full h-[300px] object-cover"
           />
         </Link>
       </CardHeader>
