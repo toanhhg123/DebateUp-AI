@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button, Typography } from "@material-tailwind/react";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -20,19 +21,20 @@ function Hero() {
             color="blue-gray"
             className="mb-2 max-w-sm text-3xl !leading-snug lg:mb-3 lg:text-5xl"
           >
-            Back-to-School Campaign
+            Thư viện tài nguyên
           </Typography>
           <Typography
             variant="lead"
             className="mb-6 font-normal !text-gray-500 md:pr-16 xl:pr-28"
           >
-            We&apos;ve got everything you need to make this school year a
-            smashing success! Whether you&apos;re a student, parent, or
-            educator, we&apos;ve got everything you need.
+            Cung cấp khoá học, sách, các tài nguyên quan trọng đến phản biên, Hệ
+            thống có tích hợp AI để người dùng có thể tranh luận
           </Typography>
-          <Button size="lg" color="gray">
-            see offers
-          </Button>
+          <Link href={"/resource"}>
+            <Button size="lg" color="gray">
+              Xem ngay
+            </Button>
+          </Link>
         </div>
         <div className="mt-40 grid gap-6 lg:mt-0">
           <div className="grid grid-cols-4 gap-6">
