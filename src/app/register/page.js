@@ -91,12 +91,12 @@ const RegisterPage = () => {
                 className="flex items-center font-normal"
               >
                 Tôi đồng ý {""}
-                <a
+                <Link
                   href="/#"
                   className="font-medium transition-colors hover:text-gray-900"
                 >
                   &nbsp;Chính sách sử dụng
-                </a>
+                </Link>
               </Typography>
             }
             containerProps={{ className: "-ml-2.5" }}

@@ -61,7 +61,7 @@ const Page = () => {
                   />
                   <div className="font-medium">{chat.name}</div>
                 </div>
-                <div className="bg-white rounded-lg p-2 shadow mb-2 max-w-sm">
+                <div className="bg-white rounded-lg p-2 shadow mb-2 max-w-[80%] w-max">
                   {chat.message}
                 </div>
               </div>
@@ -70,7 +70,7 @@ const Page = () => {
                 className="flex items-center justify-end my-4"
                 key={index.toLocaleString()}
               >
-                <div className="bg-blue-500 text-white rounded-lg p-2 shadow mr-2 max-w-sm">
+                <div className="bg-blue-500 text-white rounded-lg p-2 shadow mr-2 max-w-[80%] w-max">
                   {chat.message}
                 </div>
                 <Image

@@ -1,7 +1,13 @@
 "use client";
 
 import apiClient from "@/config/axios";
-import { Button, Input, Spinner, Typography } from "@material-tailwind/react";
+import {
+  Avatar,
+  Button,
+  Input,
+  Spinner,
+  Typography,
+} from "@material-tailwind/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { toast } from "sonner";
@@ -73,16 +79,27 @@ const Page = ({ params }) => {
       {comments?.map((comment) => (
         <article
           key={comment.id}
-          className="p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900"
+          className="p-6 mb-3 text-base flex gap-2 bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900"
         >
-          <footer className="flex justify-between items-center mb-2">
-            <div className="flex items-center">
-              <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-                Người dùng ẩn danh
-              </p>
-            </div>
-          </footer>
-          <p className="text-gray-500 dark:text-gray-400">{comment?.comment}</p>
+          <Avatar
+            src={
+              comment?.user?.avatarUrl ||
+              "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+            size="sm"
+          />
+          <div>
+            <footer className="flex items-center mb-2">
+              <div className="flex items-center">
+                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                  {comment?.user?.name}
+                </p>
+              </div>
+            </footer>
+            <p className="text-gray-500 dark:text-gray-400">
+              {comment?.comment}
+            </p>
+          </div>
         </article>
       ))}
 

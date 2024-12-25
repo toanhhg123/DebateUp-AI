@@ -3,14 +3,16 @@
 import { BookCard } from "@/components";
 import apiClient from "@/config/axios";
 import { useAuth } from "@/provider/auth";
-import { Typography } from "@material-tailwind/react";
+import { Spinner, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ResourcePage = () => {
   const { isLogin } = useAuth();
   const router = useRouter();
+  const [categoryId, setCategoryId] = useState();
+  const [type, setType] = useState();
 
   const { data: categoryData } = useQuery({
     queryKey: ["categories"],
@@ -19,15 +21,17 @@ const ResourcePage = () => {
     },
   });
 
-  const { data: resourceData } = useQuery({
-    queryKey: ["resources"],
+  const { data: resourceData, isFetching } = useQuery({
+    queryKey: ["resources", type, categoryId],
     queryFn: () => {
-      return apiClient.get("/resource");
+      return apiClient.get("/resource", { params: { type, categoryId } });
     },
   });
 
   const categories = categoryData?.data || [];
   const resources = resourceData?.data || [];
+
+  console.log(type);
 
   useEffect(() => {
     if (isLogin === false) {
@@ -60,8 +64,9 @@ const ResourcePage = () => {
           <select
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={(e) => setCategoryId(e.target.value || undefined)}
           >
-            <option>Lọc theo loại doanh mục</option>
+            <option value={""}>Tất cả</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -77,16 +82,22 @@ const ResourcePage = () => {
             Loại
           </label>
           <select
+            onChange={(e) => setType(e.target.value || undefined)}
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option>Lọc loại tài nguyên</option>
+            <option value="">Tất cả</option>
             <option value="VIDEO">VIDEO</option>
             <option value="ARTICLE">ARTICLE</option>
             <option value="BOOK">BOOK</option>
           </select>
         </div>
       </div>
+      {isFetching && (
+        <div className="flex justify-center my-10">
+          <Spinner />
+        </div>
+      )}
       <div className="container mx-auto grid grid-cols-1 items-start gap-x-6 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
         {resources.map((props) => (
           <BookCard
