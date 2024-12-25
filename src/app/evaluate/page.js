@@ -51,8 +51,9 @@ const ResourcePage = () => {
         <DialogBody>
           Kết qủa của cuối cùng của bạn là:{" "}
           <Typography variant="h4" color="red">
-            {result}
+            {result.feedback_score}
           </Typography>
+          <Typography>{result.aiResponse}</Typography>
         </DialogBody>
         <DialogFooter>
           <Button

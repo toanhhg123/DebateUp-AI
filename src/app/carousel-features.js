@@ -33,10 +33,10 @@ export function CarouselFeatures() {
                   color="white"
                   className="mb-5 text-xl font-normal "
                 >
-                  Easy Shopping, Quick Delivery <br />
-                  No need to stress about shopping for books. Order online and
-                  have your textbooks and supplies delivered straight to your
-                  doorstep for free.
+                  Mua sắm dễ dàng, Giao hàng nhanh chóng Không cần phải căng{" "}
+                  <br />
+                  thẳng khi mua sách. Đặt hàng trực tuyến và sách giáo khoa cùng
+                  đồ dùng học tập được giao tận nhà miễn phí.
                 </Typography>
                 <div className="flex items-center gap-2">
                   🚚
@@ -45,7 +45,7 @@ export function CarouselFeatures() {
                     color="white"
                     className="font-medium uppercase"
                   >
-                    Free Delivery
+                    Miễn phí
                   </Typography>
                 </div>
               </div>
