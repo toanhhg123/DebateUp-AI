@@ -68,7 +68,7 @@ function Hero() {
             />
           </div>
           <div className="grid grid-cols-4 gap-6">
-            <div></div>
+            <div />
             <Image
               width={768}
               height={768}
