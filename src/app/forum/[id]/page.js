@@ -1,11 +1,22 @@
 "use client";
 
 import apiClient from "@/config/axios";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import {
   Avatar,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Dialog,
+  IconButton,
   Input,
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
   Spinner,
+  Textarea,
   Typography,
 } from "@material-tailwind/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -14,6 +25,10 @@ import { toast } from "sonner";
 
 const Page = ({ params }) => {
   const { id } = React.use(params);
+  const [openReport, setOpenReport] = React.useState(false);
+  const [comment, setComment] = React.useState();
+
+  const handleOpenReport = () => setOpenReport((cur) => !cur);
 
   const { data, isLoading } = useQuery({
     queryKey: ["forum-item", id],
@@ -40,6 +55,19 @@ const Page = ({ params }) => {
     onError: (e) => toast.error(e.message),
   });
 
+  const { mutate: reportComment, status: statusReportComment } = useMutation({
+    mutationFn: (body) => {
+      return apiClient.post("/reports", body);
+    },
+    onSuccess: (data) => {
+      toast.success("Báo cáo thành công");
+      handleOpenReport();
+      setComment();
+      refetchComment();
+    },
+    onError: (e) => toast.error(e.message),
+  });
+
   const post = data?.data;
   const comments = dataComment?.data;
 
@@ -61,8 +89,52 @@ const Page = ({ params }) => {
       </div>
     );
 
+  const handleSubmitReport = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const body = {
+      ...Object.fromEntries(data),
+      contentId: comment.id,
+      contentType: "FORUM",
+    };
+
+    reportComment(body);
+  };
+
   return (
     <section className="container mx-auto pt-20">
+      <Dialog
+        size="lg"
+        open={openReport}
+        handler={handleOpenReport}
+        className="bg-transparent shadow-none"
+      >
+        <form onSubmit={handleSubmitReport}>
+          <Card className="mx-auto w-full">
+            <CardBody className="flex flex-col gap-4">
+              <Typography variant="h4" color="blue-gray">
+                Nội dung tố cáo
+              </Typography>
+              <Typography className="-mb-2" variant="h6">
+                Lí do
+              </Typography>
+              <Textarea name="reason" required label="Nôi dung" />
+            </CardBody>
+            <CardFooter className="pt-0">
+              <Button
+                color="red"
+                variant="gradient"
+                type="submit"
+                fullWidth
+                loading={statusReportComment === "pending"}
+              >
+                Tố cáo
+              </Button>
+            </CardFooter>
+          </Card>
+        </form>
+      </Dialog>
+
       <div className=" mx-auto mb-20 text-center">
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {post.title}
@@ -90,10 +162,31 @@ const Page = ({ params }) => {
           />
           <div>
             <footer className="flex items-center mb-2">
-              <div className="flex items-center">
+              <div className="flex items-center flex-1">
                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                   {comment?.user?.name}
                 </p>
+
+                <Menu>
+                  <MenuHandler>
+                    <IconButton variant="text">
+                      <ChevronDownIcon
+                        strokeWidth={2.5}
+                        className={"h-3.5 w-3.5 transition-transform "}
+                      />
+                    </IconButton>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem
+                      onClick={() => {
+                        setComment(comment);
+                        handleOpenReport();
+                      }}
+                    >
+                      Tố cáo
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </div>
             </footer>
             <p className="text-gray-500 dark:text-gray-400">

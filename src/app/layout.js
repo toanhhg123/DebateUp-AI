@@ -1,7 +1,7 @@
 "use client";
 
 import MuiTheme from "@/provider/mui-theme";
-import { FixedPlugin, Footer, Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
@@ -31,7 +31,6 @@ export default function RootLayout({ children }) {
               <Navbar />
               {children}
               <Footer />
-              <FixedPlugin />
             </>
           </MuiTheme>
         </AuthContextProvider>
