@@ -7,8 +7,6 @@ import CarouselFeatures from "./carousel-features.js";
 import Hero from "./hero.js";
 import TopBookCategories from "./top-book-categories.js";
 
-import Image from "next/image";
-
 export default function Campaign() {
   return (
     <>

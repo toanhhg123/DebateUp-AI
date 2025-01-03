@@ -1,4 +1,4 @@
-import { Typography, Button, Input } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 
 const LINKS = ["About Us", "Careers", "Press", "Blog", "Pricing"];
 const SUB_LINKS = ["Claim", "Privacy", "Terms"];
@@ -10,16 +10,10 @@ export function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-wrap items-end justify-center gap-8 md:justify-between">
           <div className="text-center md:text-left">
-            <Typography
-              as="a"
-              href="https://www.material-tailwind.com"
-              target="_blank"
-              variant="h4"
-              className="mb-6"
-            >
+            <Typography as="a" href="/" variant="h4" className="mb-6">
               DebateUp
             </Typography>
-            <ul className="flex flex-wrap items-center justify-center md:justify-start">
+            {/* <ul className="flex flex-wrap items-center justify-center md:justify-start">
               {LINKS.map((link, idx) => (
                 <li key={link}>
                   <Typography
@@ -33,7 +27,7 @@ export function Footer() {
                   </Typography>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>

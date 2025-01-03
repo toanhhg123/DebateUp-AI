@@ -11,13 +11,6 @@ function Hero() {
         <div className="row-start-2 lg:row-auto lg:-mt-40">
           <Typography
             variant="h1"
-            color="red"
-            className="text-3xl !leading-snug"
-          >
-            40% OFF
-          </Typography>
-          <Typography
-            variant="h1"
             color="blue-gray"
             className="mb-2 max-w-sm text-3xl !leading-snug lg:mb-3 lg:text-5xl"
           >

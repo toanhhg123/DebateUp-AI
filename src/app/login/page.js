@@ -94,7 +94,7 @@ const LoginPage = () => {
           </Button>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Chưa có tài khoản?{" "}
-            <Link href="/login" className="font-medium text-gray-900">
+            <Link href="/register" className="font-medium text-gray-900">
               Đăng kí
             </Link>
           </Typography>

@@ -33,10 +33,9 @@ export function CarouselFeatures() {
                   color="white"
                   className="mb-5 text-xl font-normal "
                 >
-                  Mua sắm dễ dàng, Giao hàng nhanh chóng Không cần phải căng{" "}
-                  <br />
-                  thẳng khi mua sách. Đặt hàng trực tuyến và sách giáo khoa cùng
-                  đồ dùng học tập được giao tận nhà miễn phí.
+                  Cung cấp tài nguyên dưới dạng sách, video, bài báo về các chủ
+                  đề liên quan đến hùng biện. <br />
+                  sản phẩm được triển khai tốc độ cao trên nền tảng S3 Storage
                 </Typography>
                 <div className="flex items-center gap-2">
                   🚚
@@ -53,9 +52,9 @@ export function CarouselFeatures() {
                 <Image
                   width={768}
                   height={768}
-                  src="/image/logos/logo-amazon 3.svg"
+                  src="https://images.unsplash.com/photo-1675716823435-054de29a2402?q=80&w=3062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="testimonial image"
-                  className="h-full w-2/4 object-contain md:!w-2/3"
+                  className="h-full w-2/4 object-contain md:!w-2/3 rounded-lg"
                 />
               </div>
             </div>

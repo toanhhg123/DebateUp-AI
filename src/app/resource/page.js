@@ -49,8 +49,8 @@ const ResourcePage = () => {
           variant="lead"
           className="mx-auto w-full px-4 !text-gray-500 lg:w-9/12"
         >
-          Bao gồm cả video, sách, bài giải, với nhà xây dựng, dự án, thực tập,
-          cơ sở, bài giải, với nhà xây dựng, dự án, thực tập, cơ sở
+          Cung cấp tài nguyên dưới dạng sách, video, bài báo về các chủ đề liên
+          quan đến hùng biện.
         </Typography>
       </div>
       <div className="flex gap-4 justify-end container my-10">
